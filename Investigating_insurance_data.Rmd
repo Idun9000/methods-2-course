@@ -1,0 +1,102 @@
+---
+title: "Investigating chosen data"
+author: "Tilde Sloth"
+date: "2/4/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+pacman::p_load(tidyverse, pastecs, moments,plyr, dplyr, lme4, caret, lmerTest)
+knitr::opts_knit$set(root.dir='/Users/tildeidunsloth/Documents/R/Investigating_data')
+```
+
+```{r}
+insurance <- read.csv("insurance.csv")
+
+# variables
+age = continuous 
+sex = categorical
+bmi = continuous
+children = discrete
+smoker = categorical
+region = categorical
+charges = continuous
+```
+
+```{r}
+# Insurance charges between sexes
+insurance%>%
+  ggplot(aes(x = sex, y = charges, fill = sex)) + geom_bar(stat = 'summary', fun = mean, width = 0.25)
+```
+```{r}
+# Smoking effecting charges
+insurance%>%
+  ggplot(aes(x = smoker, y = charges, fill = smoker)) + geom_bar(stat = 'summary', fun = mean, width = 0.25)
+```
+
+```{r}
+# BMI's effect on insurance charges
+insurance%>%
+  ggplot(aes(x= bmi, y = charges)) + geom_smooth(method = "lm")
+```
+```{r}
+# age and its effect on insurance charges
+insurance%>%
+  ggplot(aes(x= age, y = charges)) + geom_smooth(method = "lm")
+```
+```{r}
+insurance%>%
+  ggplot(aes(x = bmi)) + geom_density()
+```
+```{r}
+insurance%>%
+  ggplot(aes(x= age, y = charges)) + geom_point() +facet_wrap(~smoker)
+```
+```{r}
+# Making models
+m <- lm(charges ~ age, insurance)
+summary(m)
+
+# visualizing
+ggplot(insurance, aes(age, charges)) + geom_point() + #scatter plot
+  ggtitle('Scatter plot')
+
+ggplot(insurance, aes(age, charges)) + 
+  geom_point() + 
+  geom_smooth(method = lm)
+
+# Making a model with mutiple predictors
+m2 <- lm(charges ~ age + bmi, insurance)
+summary(m2)
+```
+
+```{r}
+# Model with interaction effect
+m3 <- lm(charges ~ smoker * age, data = insurance)
+summ(m3)
+```
+$\beta_0 = -2091.42$ is the charge when a person is not a smoker and at age = 0
+$\beta_1 = 22385.55$ is the charge increase going from non-smoker to smoker and at age = 0
+$\beta_3 = 267.25$ is the charge increase by each increment of the age variable. However this is only for non-smokers (relative to the intercept)
+
+$\beta_4 = 37.99$ Going from non-smoker to smoker will increase our 
+beta coefficient for our age predictor from: 267.25 to (267.25 + 37.99 = 305.24). So now an increment of one on the age variable will result in an increase in charge of: 305.24 per every year added
+
+```{r}
+# Comparing models
+summary(m)$adj.r.squared
+summary(m2)$adj.r.squared
+summary(m3)$adj.r.squared
+
+anova(m, m2, m3)
+m_aic <- AIC(m, m2, m3)
+m_bic <- BIC(m, m2, m3)
+
+mdl_com_df <- tibble( Model = c("m", "m2", "m3"),
+                          AIC=m_aic$AIC, 
+                          BIC=m_bic$BIC) %>% 
+  arrange(BIC)
+mdl_com_df
+```
+
