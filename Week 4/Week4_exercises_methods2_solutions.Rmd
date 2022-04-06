@@ -34,34 +34,38 @@ $$
 or single
 $ a = b $
 
+
+
 It only changes how the code is presented in the markdown. 
 
 ### Lets get started with some exercises. 
 
 $$  \sum x_i >> \sum y_i,   $$
-__answer:__
+__answer:__ sum of x is much greater than the sum of y
 
 $$ X \in \mathbb{R}^+ $$
-__answer:__
+__answer:__ X is an element of positive real numbers
 
-$$ Y \in \mathbb{I^}^+$$
-__answer:__
+$$ Y \in \mathbb{I}^+ $$
+__answer:__ Y is an element of positive integers
+
+
 
 $$ x \in \mathbb{R}^+ \therefore x \notin \mathbb{R}^- $$
-__answer:__
+__answer:__ x is an element of positive real numbers therefore x is not an element of negative real numbers
 
 $$ y > x \therefore x - y \in \mathbb{R}^-$$
-__answer:__
+__answer:__ y is greater than x therefore x minus y is an element of the negative real numbers
 
 $$ x \in \mathbb{I}^-  y \in \mathbb{I}^+ \therefore x + y  \in \mathbb{I} $$
 
-__answer:__
+__answer:__ x is an element of the set of negative integers and y is an element the set of positive integers therefore x plus y is an element of the set of integers
 
 $$ x \varpropto y \because x = c \cdot y  $$
-__answer:__
+__answer:__ x is proportional to y because x is equal to a constant times y
 
 $$ x \in \mathbb{I} \ and  \ x \notin \mathbb{I}^- \Rightarrow x \in \mathbb{I}^+ $$ 
-__answer:__
+__answer:__ x is an element of the set of integers and x is not an element of the set of negative integers and it follows that x is an element of the set of positive integers
 
 
 ### Part 2
@@ -75,22 +79,24 @@ and https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols
 Let x be the any number of postive integers and y be any negative integer. Therefore the product 
 of x and y must be a negative integer. 
 __answer:__
-$$ $$
+$$ x \in \mathbb{I}^+ \ and \ y \in \mathbb{I}^- \therefore \ x\cdot  y \in \mathbb{I}^- \  $$
 
 
 x is equal to 0 and a exist in the positive real numbers therefore a to the power of x is equal to 1. 
 __answer:__
-$$ $$
+$$ x = 0 \ and \ a \in \mathbb{R}^+\ therefore \ a^x = 1 $$
 
 
 The mean of y_hat is equal to the sum of of all y_i divded by the length of y_i which is an approximate of the mean of y.   
 __answer:__
-$$ $$
+
+$$ \hat{\bar y} = \sum \frac{y_i} {n} \approx \bar{y}  $$
+
 
 
 x is proportional to y iff (if and only if) x = y * c
 __answer:__
-$$ $$
+$$ x \varpropto y \iff x = y \cdot \ c $$
 
 
 
@@ -111,33 +117,106 @@ Find the following set z for each expression.
 
   1)
 $$ z = x \cup y  $$
+z = {0, 1, 2, 3, 4, 8, 10, 11, 20}
+
+
   2)
 $$ z =x \cap y $$
+z = {3, 4, 10, 11}
 
   3)
 $$z = x \setminus y $$
-
+z = {0, 2, 8}
   4) 
 $$max(x) $$
+max(x) = 11
 
   5)
 $$ max(x \cap y)$$
-
+max x cap y = 11
 
 # Exercises from the book. 
 These exercises is to refresh some math fundamentals from high-school which will be useful for coming weeks. You can do most of these with pen and paper. 
 
 
-### 1.1 
+### 1.1 simplify
+
+a) 
+$$(-x^4 \cdot y^2)^2 \implies (-x^4)^2 \cdot y^4 \implies x^8 \cdot y^4 $$
+b) 
+$$9 \cdot(3^0) \implies 9 \cdot 1 \implies 9$$
+c) 
+$$(2a^2) \cdot (4a^4) \implies 8a^6 $$
+d)
+$$\frac{x^4}{x^3} \implies x$$
+e) 
+$$(-2)^{7-4} \implies (-2)^3 \implies (-2) \cdot (-2) \cdot (-2) \implies -8$$
+f) 
+$$(\frac {1}{27b^3})^\frac {1}{3} \implies \sqrt[3]{\frac {1}{27b^3}} \implies \frac {1}{3b}  $$
+g)
+$$y^7 \cdot y^6 \cdot y^5 \cdot y^4 \implies y^{22}$$
+h)
+$$ \frac {2a/7b}{11b/5a} \implies \frac {2a}{7b} \cdot \frac {5a}{11b} \implies \frac {10a^2}{77b^2} $$
+
+i)
+$$(z^2)^4 \implies z^8$$
 
 
 ### 1.4 
 
+The relationship between Fahrenheit and Centigrade can be expressed as 5f − 9c = 160. Show that this is a linear function by putting it in y = mx + b format with c = y. Graph the line indicating slope and intercept.
+
+```{r}
+# -17.77 + 5/9f = c
+
+curve(-17.77 + 5/9*x)
+
+```
+
+
 ### 1.6
+a) 
+$$x-3 < 2x + 15 \implies -18 < x \implies x > -18 $$
+b) 
+$$11- \frac {4}{3}t>3 \implies 33 - 4t>9 \implies -4t > 9-33 \implies t > \frac {-24}{-4} \implies t>6$$
+c) 
+$$\frac {5}{6}y+3(y-1)≤ \frac {11}{6}\cdot (1-y)+2y \implies \frac {5}{6}y+3y-3 ≤ \frac {11}{6} - \frac {11}{6}y+2y \implies 5y + 18y-18 ≤ 11-11y+12y \implies 23y -18 ≤ 11+y \implies 22y ≤ 29 \implies y ≤ \frac{29}{22} $$
 
 
 ### 1.9
+Which of these functions are continuous?
 
+a) 
+$$f(x) = \frac {9x^3-x}{(x-1)(x+1)}$$
+```{r}
+curve((9*x^3-x)/(x-1)(x+1))
+
+```
+= not a function
+
+
+
+b) 
+$$f(x) = e^{-x^2}$$
+```{r}
+curve(exp(-x^2))
+```
+= a function
+
+c) 
+$$h(x,y) = \frac {xy}{x+y}$$
+```{r}
+curve(x*y/x+y)
+```
+
+d)
+$$$$
+
+e)
+$$$$
+
+f)
+$$$$
 
 ### 1.18 (hard)
 

@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 # Matrix calculation by hand. 
-
+exercise 1 3 and 6
 ![alt text here](exercise1.png")
 
 
@@ -98,16 +98,45 @@ det(matrix3)
 ## Exercise 1
 
     1) Simulate random X variables (choose as many as you want) and make a design matrix
+```{r}
+designmatrix <- matrix( c(4,7,3,8) ,ncol = 2, nrow = 2)
+```
+    
     
     2) Decide on your beta values and save it in a beta vector.  
 
+```{r}
+betavector <- c(1,2)
+```
+
+
     3) Using matrix multiplication find y based on our beta vector and design matrix. 
         3.1) Plot the relationship between y ~ x
-        3.2) Does something look odd? 
+```{r}
+y = designmatrix * betavector
+```
         
+        3.2) Does something look odd? 
+```{r}
+# No? Does it
+```
+        
+
     4) Simulate errors and add it your y vector so that it becomes yhat. 
-        4.1) Plot the new y ~ x and the abline corresponding to our beta values. 
+```{r}
+error <- c(0.2, 0.6)
+```
+    
+        4.1) Plot the new y ~ x and the abline corresponding to our beta values.
+```{r}
+y_hat = designmatrix * betavector + error
+```
+        
         4.2) Is this more realistic than what we observed 3.2? 
+```{r}
+# I guess??
+```
+        
     
     5) Using your knowledge of matrix inversion and the general linear model find the corresponding beta values to the yhat ~ x.
         5.1) Did beta coefficinets match the ones you specified in the earlier example and               why/why not? 

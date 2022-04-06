@@ -26,13 +26,22 @@ In your own words describe the two different distributions and what they represe
 ```{r}
 x1 <- rbinom(2e4, size = 10, prob = 1/6)
 ```
+Rbinom = Random binomial distribution. The function rbinom generates a vector of binomial distributed random variables given a vector length n, number of trials (size) and probability of success on each trial (prob)
+
+rbinom(n, size, prob) 
+
 ```{r}
 x2 <- dbinom(0:10, size = 10 , prob = 1/6)
 plot(x = 0:10, y = x2, type = "l")
 ```
+Dbinom = defining a interval for x. Probability density function: Put simply, dbinom finds the probability of getting a certain number of successes (x) in a certain number of trials (size) where the probability of success on each trial is fixed (prob)
+
+dbinom(x, size, prob) 
+
+
 ### Difference between two distributions. 
-treatment A has a E(X) = 10 with sd = 1.5
-treatment B has a E(X) = 5 with sd = 2
+treatment A has a E(X) = 10 with se = 1.5
+treatment B has a E(X) = 5 with se = 2
 The two treatments are independent. 
 
 estimate the difference in effect between the two distributions.
@@ -40,6 +49,12 @@ estimate the difference in effect between the two distributions.
   2. Estimate the uncertainty surrounding the point estimate difference.
 
 ```{r}
+#1 Point estimate: M1 - M2 (10-5)
+10-5
+
+#2 uncertainty surrounding the point estimate difference: finding SE from SE and Mean for each treatment (sqrt(mean1^2 + mean2^2))
+
+sqrt(2^2+1.5^2)
 
 ```
 
@@ -52,26 +67,24 @@ How would the formula for the uncertainty estimate differ if we said that treatm
 # New stuff for today. 
 ## Some functions: 
 ### Sample
-If I have an underlying idea about how many people eat the most candy on friday or saturday. We can use that to simulate the distribtuion. The sample function allows the outcome of sampling to be strings. 
+If I have an underlying idea about how many people eat the most candy on friday or saturday, we can use that to simulate the distribtuion. The sample function allows the outcome of sampling to be strings. 
 
 ```{r}
 sample(c("friday","saturday"), size = 10, replace = TRUE, prob = c(0.55,0.45))
 ```
-Replace = TRUE is required if you want a list with occurences. Try and change it to false and see what happens. 
 
-first element C("friday", "saturday") is our possible outcomes. and prob = c(0.8, 0.7) is their corresponding probabilities. 
 
 
 ```{r}
 #add sunday as another option and think add the proaability of sunday to the probability vector. 
-sample()
+sample(c("friday","saturday", "sunday"), size = 10, replace = TRUE, prob = c(0.55,0.35,0.1))
 
 ```
 
 
 
 ### Seq()
-A way to generate a vector of number bounded by the "from" and "to" statment. While "by" indicates the size of the steps. 
+A way to generate a vector of number bounded by the "from" and "to" statement. While "by" indicates the size of the steps. 
 ```{r}
 #generate the numbers from 2 to 100 with steps of whole integers (1)
 seq(from = 2, to = 100, by = 1)
@@ -110,6 +123,10 @@ x <- seq(from = 1 , to = 50, by = 0.5)
 for (i in 1:length(x)){
   print(sum(x)/sum(x[1:i]))
 }
+#Line 1: 2524.5/1
+#Line 2: 2524.5/(1+1.5)
+#Line 3: 2524.5/(1+1.5+2)
+
 ```
 
 # While loop
@@ -135,7 +152,7 @@ print("Fibonacci sequence:")
 print(n1)
 print(n2)
 while(count < nterms) {
-nth = n1 + n2
+nth = n1 + n2 
 print(nth)
 # update values
 n1 = n2
@@ -148,10 +165,21 @@ count = count + 1
 The number you type in the console in saved in "nterms". Walk through the line of codes and figure out how nterms is as conditionally statements. 
 
 Question1: What happens if you get a negative number. (which line of code is responsible)
+"Please enter a positive integer" 
+because of this line 
+if(nterms <= 0) {
+print("Plese enter a positive integer")
 
 Question2: What happens if you type a positive number (which lines starts the sequence with the first two numbers) 
+0 and 1 
+because of this line 
+first two terms n1 = 0, n2 = 1
 
 Question3: Which line of code stops the sequence when the desired n-terms is reached. 
+This line:
+while(count < nterms) {
+nth = n1 + n2
+print(nth)
 
 Question4: Make the while loop print out nterms + 1 expression of the fibnonacci sequence. 
 
