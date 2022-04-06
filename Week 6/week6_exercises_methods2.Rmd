@@ -11,10 +11,18 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 # Matrix calculation by hand. 
+<<<<<<< HEAD
 exercise 1 3 and 6
 ![alt text here](exercise1.png")
 
 
+=======
+exercises in the folder for today. 
+
+ - Exercise 4.3 in the book
+ - Exercise 1 , 3 and 6 shown as pictures. 
+ - 
+>>>>>>> 7b36bd1ffb8ba4011cc93d91c7b9ea536bed47b2
 
 # Intro to matrix operations in R.
 
